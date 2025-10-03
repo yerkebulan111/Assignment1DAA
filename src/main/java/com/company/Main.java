@@ -16,7 +16,6 @@ public class Main {
         String algo = "";
         int rnd = 42;
 
-
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "--size": size = Integer.parseInt(args[++i]); break;
@@ -30,30 +29,35 @@ public class Main {
         Metrics metrics = new Metrics();
         CsvWriter csvWriter = new CsvWriter("results.csv");
 
-        if (algo.isEmpty() || algo.equals("mergesort-base")) {
+        if (algo.equals("allsorts")) {
             runMergeSortBaseline(size, trials, random, metrics, csvWriter);
-        }
-        if (algo.isEmpty() || algo.equals("mergesort-buffer")) {
             runMergeSortBuffer(size, trials, random, metrics, csvWriter);
-        }
-        if (algo.isEmpty() || algo.equals("mergesort-cutoff")) {
             runMergeSortCutoff(size, trials, random, metrics, csvWriter);
-        }
-        if (algo.isEmpty() || algo.equals("quicksort-rand")) {
             runQuickSortRandom(size, trials, random, metrics, csvWriter);
-        }
-        if (algo.isEmpty() || algo.equals("quicksort-small")) {
             runQuickSortSmall(size, trials, random, metrics, csvWriter);
-        }
-        if (algo.isEmpty() || algo.equals("deterministic-select")) {
             runDeterministicSelect(size, trials, random, metrics, csvWriter);
-        }
-        if (algo.isEmpty() || algo.equals("closest-pair")) {
             runClosestPair(size, trials, random, metrics, csvWriter);
+        } else if (algo.equals("mergesort-base")) {
+            runMergeSortBaseline(size, trials, random, metrics, csvWriter);
+        } else if (algo.equals("mergesort-buffer")) {
+            runMergeSortBuffer(size, trials, random, metrics, csvWriter);
+        } else if (algo.equals("mergesort-cutoff")) {
+            runMergeSortCutoff(size, trials, random, metrics, csvWriter);
+        } else if (algo.equals("quicksort-rand")) {
+            runQuickSortRandom(size, trials, random, metrics, csvWriter);
+        } else if (algo.equals("quicksort-small")) {
+            runQuickSortSmall(size, trials, random, metrics, csvWriter);
+        } else if (algo.equals("deterministic-select")) {
+            runDeterministicSelect(size, trials, random, metrics, csvWriter);
+        } else if (algo.equals("closest-pair")) {
+            runClosestPair(size, trials, random, metrics, csvWriter);
+        } else {
+            System.err.println("Unknown algorithm: " + algo);
         }
 
         System.out.println("Finished. Results written to results.csv");
     }
+
 
     private static int[] generateRandomArray(int size, Random random) {
         int[] arr = new int[size];
