@@ -11,7 +11,6 @@ public class MergeSortBaseline {
     }
 
     private static void mergeSort(int[] arr, int[] aux, int low, int high, Metrics metrics) {
-        metrics.incrementRecursiveCalls();
         if (low >= high) return;
 
         int mid = (low + high) / 2;

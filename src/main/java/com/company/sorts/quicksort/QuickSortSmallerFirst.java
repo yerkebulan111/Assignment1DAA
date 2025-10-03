@@ -11,7 +11,6 @@ public class QuickSortSmallerFirst {
 
     private static void quickSort(int[] arr, int low, int high, Metrics metrics) {
         while (low < high) {
-            metrics.incrementRecursiveCalls();
             metrics.enterDepth();
 
             int pivotIndex = SortUtils.partition(arr, low, high, metrics);

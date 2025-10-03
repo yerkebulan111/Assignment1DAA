@@ -15,10 +15,11 @@ public class MetricsTest {
     }
 
     @Test
-    public void testSwapsIncrement() {
+    public void testAllocationsIncrement() {
         Metrics metrics = new Metrics();
-        metrics.incrementSwaps();
-        assertEquals(1, metrics.getSwaps());
+        metrics.incrementAllocations();
+        metrics.incrementAllocations();
+        assertEquals(2, metrics.getAllocations());
     }
 
     @Test
@@ -28,14 +29,17 @@ public class MetricsTest {
         metrics.enterDepth();
         metrics.exitDepth();
         assertEquals(2, metrics.getMaxDepth());
-        assertEquals(1, metrics.getComparisons()); // may be wrong, I will change later
     }
 
     @Test
     public void testReset() {
         Metrics metrics = new Metrics();
         metrics.incrementComparisons();
+        metrics.incrementAllocations();
+        metrics.enterDepth();
         metrics.reset();
         assertEquals(0, metrics.getComparisons());
+        assertEquals(0, metrics.getAllocations());
+        assertEquals(0, metrics.getMaxDepth());
     }
 }

@@ -13,7 +13,6 @@ public class MergeSortCutOff {
     }
 
     private static void mergeSort(int[] arr, int[] aux, int low, int high, Metrics metrics) {
-        metrics.incrementRecursiveCalls();
 
         if (high - low <= CUTOFF) {
             insertionSort(arr, low, high, metrics);
@@ -34,7 +33,6 @@ public class MergeSortCutOff {
                 metrics.incrementComparisons();
                 if (arr[j] > key) {
                     arr[j + 1] = arr[j];
-                    metrics.incrementSwaps();
                     j--;
                 } else break;
             }

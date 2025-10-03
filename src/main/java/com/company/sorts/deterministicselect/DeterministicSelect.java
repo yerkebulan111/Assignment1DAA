@@ -1,9 +1,11 @@
 package com.company.sorts.deterministicselect;
 
+import com.company.metrics.Metrics;
 import java.util.Arrays;
 
 public class DeterministicSelect {
 
+    // Original 2-arg API
     public static int select(int[] arr, int k) {
         if (arr == null || arr.length == 0) {
             throw new IllegalArgumentException("Array is empty");
@@ -12,6 +14,17 @@ public class DeterministicSelect {
             throw new IllegalArgumentException("k is out of bounds");
         }
         return momSelect(arr, 0, arr.length - 1, k);
+    }
+
+    // New overload for CLI: matches App.java
+    public static int select(int[] arr, int k, Metrics metrics) {
+        if (metrics != null) {
+            metrics.reset(); // reset metrics before run
+        }
+        int result = select(arr, k); // delegate to normal select
+        // NOTE: The current implementation does not count comparisons/swaps.
+        // If you want real metrics, you’d need to instrument partition/swap calls.
+        return result;
     }
 
     private static int momSelect(int[] arr, int left, int right, int k) {
@@ -34,7 +47,6 @@ public class DeterministicSelect {
     }
 
     private static int partition(int[] arr, int left, int right, int pivot) {
-        // move pivot to end
         int pivotIndex = left;
         for (int i = left; i <= right; i++) {
             if (arr[i] == pivot) {

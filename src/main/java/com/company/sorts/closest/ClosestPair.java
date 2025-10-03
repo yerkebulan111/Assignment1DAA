@@ -5,7 +5,6 @@ import java.util.Comparator;
 
 public class ClosestPair {
 
-
     public static class Point {
         public int x, y;
 
@@ -15,20 +14,23 @@ public class ClosestPair {
         }
     }
 
-
     private static double distance(Point p1, Point p2) {
         int dx = p1.x - p2.x;
         int dy = p1.y - p2.y;
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-
+    // Original
     public static double findClosest(Point[] points) {
         Point[] sortedByX = points.clone();
         Arrays.sort(sortedByX, Comparator.comparingInt(p -> p.x));
         return closestUtil(sortedByX, 0, sortedByX.length - 1);
     }
 
+    // Wrapper to match CLI (App.java)
+    public static double closest(Point[] points) {
+        return findClosest(points);
+    }
 
     private static double closestUtil(Point[] points, int left, int right) {
         if (right - left <= 3) {
@@ -48,7 +50,6 @@ public class ClosestPair {
 
         int midX = points[mid].x;
 
-
         Point[] strip = new Point[right - left + 1];
         int stripSize = 0;
         for (int i = left; i <= right; i++) {
@@ -58,7 +59,6 @@ public class ClosestPair {
         }
 
         Arrays.sort(strip, 0, stripSize, Comparator.comparingInt(p -> p.y));
-
 
         for (int i = 0; i < stripSize; i++) {
             for (int j = i + 1; j < stripSize && (strip[j].y - strip[i].y) < d; j++) {

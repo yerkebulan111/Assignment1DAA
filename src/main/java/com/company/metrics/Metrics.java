@@ -2,8 +2,7 @@ package com.company.metrics;
 
 public class Metrics {
     private int comparisons;
-    private int swaps;
-    private int recursiveCalls;
+    private int allocations;
     private int maxDepth;
     private int currentDepth;
 
@@ -11,12 +10,8 @@ public class Metrics {
         comparisons++;
     }
 
-    public void incrementSwaps() {
-        swaps++;
-    }
-
-    public void incrementRecursiveCalls() {
-        recursiveCalls++;
+    public void incrementAllocations() {
+        allocations++;
     }
 
     public void enterDepth() {
@@ -32,15 +27,12 @@ public class Metrics {
 
     public void reset() {
         comparisons = 0;
-        swaps = 0;
-        recursiveCalls = 0;
+        allocations = 0;
         maxDepth = 0;
         currentDepth = 0;
     }
 
-
     public int getComparisons() { return comparisons; }
-    public int getSwaps() { return swaps; }
-    public int getRecursiveCalls() { return recursiveCalls; }
+    public int getAllocations() { return allocations; }
     public int getMaxDepth() { return maxDepth; }
 }
