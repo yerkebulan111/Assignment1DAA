@@ -51,6 +51,7 @@ Each algorithm includes:
 ---
 
 ## Plot
+<img width="3000" height="1800" alt="algorithm_runtime_comparison" src="https://github.com/user-attachments/assets/f5b6ae62-7887-443e-aff3-10ff7f9acdeb" />
 
 The project includes a generated performance plot that visualizes algorithm performance across multiple runs.
 
